@@ -37,8 +37,11 @@ public class VRController : MonoBehaviour
     Vector3 direction;
     GroceryDataHandler gData;
 
+    private Animator anim;
+
     void Awake()
     {
+        anim = GetComponentInChildren<Animator>();
         trackedObj = GetComponent<SteamVR_TrackedObject>();
         empty = Shader.Find("Standard");
         outline = Shader.Find("Custom/OutlineEffect");
@@ -47,6 +50,9 @@ public class VRController : MonoBehaviour
 
     void Update()
     {
+        var device = SteamVR_Controller.Input((int)trackedObj.index);
+        if (joint != null || hJoint != null || cart != null) anim.Play("Grip");
+
         HandleOutline();
         StateManager();
 
@@ -88,19 +94,22 @@ public class VRController : MonoBehaviour
         if ((joint == null || hJoint == null || cart == null) && device.GetTouchDown(SteamVR_Controller.ButtonMask.Trigger))
         {
             AttachJoint(); // += delagte
+            anim.Play("Gripping");
         }
         else if ((joint != null) && device.GetTouchUp(SteamVR_Controller.ButtonMask.Trigger))
-        {
-           
+        {           
             DetachJoint(); // -= delegate
+            anim.Play("Idle");
         }
         if (hJoint != null && device.GetTouchUp(SteamVR_Controller.ButtonMask.Trigger))
         {
             DetachJoint();
+            anim.Play("Idle");
         }
         if (cart != null && device.GetTouchUp(SteamVR_Controller.ButtonMask.Trigger))
         {
             DetachJoint();
+            anim.Play("Idle");
         }
 
     }

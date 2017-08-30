@@ -92,8 +92,8 @@ public class DataHandler : MonoBehaviour {
         File.WriteAllLines(Directory.GetParent(Directory.GetParent(Application.dataPath).FullName).FullName + "\\Shared Data" + "\\Data\\ShelfData\\" + System.DateTime.Now.ToString("MM-dd-yy_hh-mm-ss") + "-shelfItems.txt", shelfSelection);
         File.WriteAllLines(Directory.GetParent(Directory.GetParent(Application.dataPath).FullName).FullName + "\\Shared Data" + "\\Data\\ShelfData\\" + System.DateTime.Now.ToString("MM-dd-yy_hh-mm-ss") + "-shelfPrices.txt", priceSelection);
 #else
-        File.WriteAllText(Directory.GetParent(Application.dataPath).FullName + "\\Shared Data" + "\\Data\\ShelfData\\" + System.DateTime.Now.ToString("MM-dd-yy_hh-mm-ss") + "shelfItems", shelfSelection.ToString());
-        File.WriteAllText(Directory.GetParent(Application.dataPath).FullName + "\\Shared Data" + "\\Data\\ShelfData\\" + System.DateTime.Now.ToString("MM-dd-yy_hh-mm-ss") + "shelfPrices", priceSelection.ToString());
+        File.WriteAllLines(Directory.GetParent(Application.dataPath).FullName + "\\Shared Data" + "\\Data\\ShelfData\\" + System.DateTime.Now.ToString("MM-dd-yy_hh-mm-ss") + "-shelfItems.txt", shelfSelection);
+        File.WriteAllLines(Directory.GetParent(Application.dataPath).FullName + "\\Shared Data" + "\\Data\\ShelfData\\" + System.DateTime.Now.ToString("MM-dd-yy_hh-mm-ss") + "-shelfPrices.txt", priceSelection);
 #endif
     }
 }

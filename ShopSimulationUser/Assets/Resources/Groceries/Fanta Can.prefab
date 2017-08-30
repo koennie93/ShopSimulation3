@@ -26,7 +26,7 @@ GameObject:
   - component: {fileID: 65345639386180592}
   - component: {fileID: 64343009841683822}
   - component: {fileID: 114929520903500536}
-  m_Layer: 2
+  m_Layer: 8
   m_Name: Fanta Can
   m_TagString: Grocery
   m_Icon: {fileID: 0}

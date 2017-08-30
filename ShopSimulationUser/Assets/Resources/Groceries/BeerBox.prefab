@@ -25,7 +25,7 @@ GameObject:
   - component: {fileID: 64713942722232838}
   - component: {fileID: 65061132495137040}
   - component: {fileID: 114251010891887532}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: BeerBox
   m_TagString: Grocery
   m_Icon: {fileID: 0}

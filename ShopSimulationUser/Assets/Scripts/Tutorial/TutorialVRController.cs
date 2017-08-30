@@ -45,8 +45,11 @@ public class TutorialVRController : MonoBehaviour
     public float waitTime;
     public bool hasPressedTrigger = false;
 
+    private Animator anim;
+
     void Awake()
     {
+        anim = GetComponentInChildren<Animator>();
         tutorialManager = tutorialManagerGameObject.GetComponent<TutorialManager>();
         trackedObj = GetComponent<SteamVR_TrackedObject>();
         empty = Shader.Find("Standard");
@@ -57,6 +60,9 @@ public class TutorialVRController : MonoBehaviour
 
     void Update()
     {
+        var device = SteamVR_Controller.Input((int)trackedObj.index);
+        if (joint != null || hJoint != null || cart != null) anim.Play("Grip");
+
         Vector3 screenPoint = cam.WorldToViewportPoint(transform.position);
         if (tutorialManager.tutorialState == 1)
         {
@@ -142,19 +148,23 @@ public class TutorialVRController : MonoBehaviour
 
         if ((joint == null || hJoint == null || cart == null) && device.GetTouchDown(SteamVR_Controller.ButtonMask.Trigger))
         {
-            AttachJoint(); // += delagte
+            AttachJoint(); 
+            anim.Play("Gripping");
         }
         else if ((joint != null) && device.GetTouchUp(SteamVR_Controller.ButtonMask.Trigger))
         {
-            DetachJoint(); // -= delegate
+            DetachJoint(); 
+            anim.Play("Idle");
         }
         if (hJoint != null && device.GetTouchUp(SteamVR_Controller.ButtonMask.Trigger))
         {
             DetachJoint();
+            anim.Play("Idle");
         }
         if (cart != null && device.GetTouchUp(SteamVR_Controller.ButtonMask.Trigger))
         {
             DetachJoint();
+            anim.Play("Idle");
         }
 
     }
@@ -211,6 +221,7 @@ public class TutorialVRController : MonoBehaviour
             cart = raycastHit.collider.gameObject;
             //cart.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezeRotation;
         }
+
     }
 
     void DetachJoint()
@@ -361,7 +372,7 @@ public class TutorialVRController : MonoBehaviour
         if (collision.transform.gameObject.tag == "SnapZone" && collision.transform.gameObject.transform.childCount <= 0 && joint != null)
         {
             if (Vector3.Distance(gameObject.transform.position, collision.gameObject.transform.position) <= 0.3f &&
-             collision.transform.parent.parent.parent.GetComponent<PlankSpawnController>().type == joint.GetComponent<GroceryDataHandler>().groceryName &&
+             collision.transform.parent.parent.parent.GetComponent<TutorialPlankSpawnController>().type == joint.GetComponent<GroceryDataHandler>().groceryName &&
              !inRange.Contains(collision.gameObject))
             {
                 inRange.Add(collision.gameObject);

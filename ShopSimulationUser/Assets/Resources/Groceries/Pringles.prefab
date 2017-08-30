@@ -26,7 +26,7 @@ GameObject:
   - component: {fileID: 65136201047687920}
   - component: {fileID: 64164860758470722}
   - component: {fileID: 114353989324879352}
-  m_Layer: 2
+  m_Layer: 8
   m_Name: Pringles
   m_TagString: Grocery
   m_Icon: {fileID: 0}

@@ -28,13 +28,13 @@ public class UserMenu : MonoBehaviour {
         sRendererVR = VRRoom.GetComponent<SpriteRenderer>();
         sRendererTut = Tutorial.GetComponent<SpriteRenderer>();
 
-        //laser.FakeStart();
+        laser.FakeStart();
     }
 
     private void Update()
     {
         var device = SteamVR_Controller.Input((int)trackedObj.index);
-        if (Physics.Raycast(transform.position, Quaternion.AngleAxis(60, transform.right) * transform.forward, out hit))
+        if (Physics.Raycast(transform.position, transform.forward, out hit))
         {
             if (hit.collider.gameObject == Tutorial)
             {

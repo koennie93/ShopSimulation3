@@ -29,7 +29,7 @@ public class TutorialManager : MonoBehaviour {
     [SerializeField]
     private GameObject arrow;
     [SerializeField]
-    private GameObject shelfPlane, cartPlane;
+    private GameObject shelfPlane, cartPlane, circle, playerPosition;
 
     public int stateNumber;
     public string newText;
@@ -43,7 +43,8 @@ public class TutorialManager : MonoBehaviour {
     private void Awake()
     {
         // State 1 (Look at your hands)
-        tutorialState = 1;
+        tutorialState = 0;
+        textMesh.text = "Verplaats je naar de cirkel!";
         laser = false;
         continueButton.SetActive(false);
         replayButton.SetActive(false);
@@ -51,9 +52,6 @@ public class TutorialManager : MonoBehaviour {
 
     void start()
     {
-        //anim = shelf.GetComponent<Animation>();
-        //colorStart = shelf.GetComponent<Renderer>().material.color;
-        //colorEnd = new Color(colorStart.r, colorStart.g, colorStart.b, 0.0f);
     }
 
     private void Update()
@@ -98,17 +96,30 @@ public class TutorialManager : MonoBehaviour {
                 arrow.transform.Rotate(new Vector3(-90, 0, 0));
             }
         }
+        if (tutorialState == 0)
+        {
+            if (circle != null)
+            {
+                Vector2 playerPos = new Vector2(playerPosition.transform.position.x, playerPosition.transform.position.z);
+                Vector2 circlePos = new Vector2(circle.transform.position.x, circle.transform.position.z);
+
+                if (Vector2.Distance(playerPos, circlePos) < 0.2)
+                {
+                    circle.SetActive(false);
+                    textMesh.text = "";
+                    InvokeMethod("ChangeState", 2, 1);
+                    InvokeMethod("ChangeText", 3, "Kijk naar je handen!");
+                }
+            }
+        }
 
         switch (tutorialState)
         {
             case 0:
-                textMesh.fontSize = 80;
-                textMesh.text = "";
                 break;
             case 1:
                 Debug.Log("TutMngr State 1");
                 // Look at your hands
-                textMesh.text = "Kijk naar je handen!";
                 break;
             case 2:
                 Debug.Log("TutMngr State 2");

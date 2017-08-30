@@ -25,7 +25,7 @@ GameObject:
   - component: {fileID: 65470307792164788}
   - component: {fileID: 64520912664046324}
   - component: {fileID: 114836098733005718}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Broccoli
   m_TagString: Grocery
   m_Icon: {fileID: 0}

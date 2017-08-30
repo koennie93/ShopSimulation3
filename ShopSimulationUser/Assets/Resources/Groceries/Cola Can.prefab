@@ -26,7 +26,7 @@ GameObject:
   - component: {fileID: 65001300939056196}
   - component: {fileID: 64529235219088494}
   - component: {fileID: 114663761257201200}
-  m_Layer: 2
+  m_Layer: 8
   m_Name: Cola Can
   m_TagString: Grocery
   m_Icon: {fileID: 0}

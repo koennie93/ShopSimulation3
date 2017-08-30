@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 65615544657179208}
   - component: {fileID: 64338180826716668}
   - component: {fileID: 114770008517362458}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Apple
   m_TagString: Grocery
   m_Icon: {fileID: 0}
@@ -40,7 +40,7 @@ GameObject:
   - component: {fileID: 4629763636773512}
   - component: {fileID: 33279723204864386}
   - component: {fileID: 23267007170380310}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -57,7 +57,7 @@ GameObject:
   - component: {fileID: 4271196015051484}
   - component: {fileID: 33331935228005002}
   - component: {fileID: 23156012786787548}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}

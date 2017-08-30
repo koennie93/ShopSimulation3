@@ -29,7 +29,7 @@ public class ModelToPrefab : EditorWindow
             GameObject prefab = Instantiate(model);
             prefab.name = name;
             prefab.tag = "Grocery";
-            prefab.layer = 2;
+            prefab.layer = 8;
 
             // Add components.
             prefab.AddComponent<MeshFilter>();

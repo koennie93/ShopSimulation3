@@ -34,6 +34,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4215043455759198}
+  - component: {fileID: 54450098610229386}
   m_Layer: 0
   m_Name: GunPos
   m_TagString: Untagged
@@ -731,7 +732,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1424405628252336}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.32, y: 1.012, z: 0.239}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: -1, y: 1, z: 1}
   m_Children:
   - {fileID: 4227329045832500}
@@ -766,6 +767,21 @@ Transform:
   m_Father: {fileID: 4719849139410046}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: -19.7117, y: -17.3014, z: 6.4508}
+--- !u!54 &54450098610229386
+Rigidbody:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1105698109272550}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!95 &95576789819996806
 Animator:
   serializedVersion: 3
@@ -796,7 +812,7 @@ SkinnedMeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 0947ddce3efe28440b95c0e25a57b6fe, type: 2}
+  - {fileID: 2100000, guid: 60b59b8cb37371e43a9c3659323ec978, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

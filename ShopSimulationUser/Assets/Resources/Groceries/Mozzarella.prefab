@@ -25,7 +25,7 @@ GameObject:
   - component: {fileID: 64705559600309610}
   - component: {fileID: 65762566233675290}
   - component: {fileID: 114900265325013026}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Mozzarella
   m_TagString: Grocery
   m_Icon: {fileID: 0}
