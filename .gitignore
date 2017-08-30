@@ -12,7 +12,7 @@ ShopSimulationUser/[Bb]uild/
 ShopSimulationUser/[Bb]uilds/
 ShopSimulationUser/Assets/AssetStorePackages/
 ShopSimulationUser/Assets/Extensions/
-ShopSimulationUser/Kibrary/
+Builds/
 
 # Visual Studio 2015 cache directory
 /.vs/

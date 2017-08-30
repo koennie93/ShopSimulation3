@@ -1,0 +1,123 @@
+fileFormatVersion: 2
+guid: 6597945733231834ebfcd71f3cd909e2
+timeCreated: 1464267210
+licenseType: Pro
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: Hand Capture:LeftForeArm
+    100002: Hand Capture:LeftHand
+    100004: Hand Capture:LeftHandIndex1
+    100006: Hand Capture:LeftHandIndex2
+    100008: Hand Capture:LeftHandIndex3
+    100010: Hand Capture:LeftHandIndex4
+    100012: Hand Capture:LeftHandMiddle1
+    100014: Hand Capture:LeftHandMiddle2
+    100016: Hand Capture:LeftHandMiddle3
+    100018: Hand Capture:LeftHandMiddle4
+    100020: Hand Capture:LeftHandPinky1
+    100022: Hand Capture:LeftHandPinky2
+    100024: Hand Capture:LeftHandPinky3
+    100026: Hand Capture:LeftHandPinky4
+    100028: Hand Capture:LeftHandRing1
+    100030: Hand Capture:LeftHandRing2
+    100032: Hand Capture:LeftHandRing3
+    100034: Hand Capture:LeftHandRing4
+    100036: Hand Capture:LeftHandThumb1
+    100038: Hand Capture:LeftHandThumb2
+    100040: Hand Capture:LeftHandThumb3
+    100042: Hand Capture:LeftHandThumb4
+    100044: //RootNode
+    100046: Hand001
+    400000: Hand Capture:LeftForeArm
+    400002: Hand Capture:LeftHand
+    400004: Hand Capture:LeftHandIndex1
+    400006: Hand Capture:LeftHandIndex2
+    400008: Hand Capture:LeftHandIndex3
+    400010: Hand Capture:LeftHandIndex4
+    400012: Hand Capture:LeftHandMiddle1
+    400014: Hand Capture:LeftHandMiddle2
+    400016: Hand Capture:LeftHandMiddle3
+    400018: Hand Capture:LeftHandMiddle4
+    400020: Hand Capture:LeftHandPinky1
+    400022: Hand Capture:LeftHandPinky2
+    400024: Hand Capture:LeftHandPinky3
+    400026: Hand Capture:LeftHandPinky4
+    400028: Hand Capture:LeftHandRing1
+    400030: Hand Capture:LeftHandRing2
+    400032: Hand Capture:LeftHandRing3
+    400034: Hand Capture:LeftHandRing4
+    400036: Hand Capture:LeftHandThumb1
+    400038: Hand Capture:LeftHandThumb2
+    400040: Hand Capture:LeftHandThumb3
+    400042: Hand Capture:LeftHandThumb4
+    400044: //RootNode
+    400046: Hand001
+    4300000: Hand001
+    7400000: Hand3Dmodel3
+    9500000: //RootNode
+    13700000: Hand001
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleRotations: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
