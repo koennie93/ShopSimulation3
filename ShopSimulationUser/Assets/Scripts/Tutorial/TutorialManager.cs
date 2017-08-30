@@ -106,14 +106,17 @@ public class TutorialManager : MonoBehaviour {
                 textMesh.text = "";
                 break;
             case 1:
+                Debug.Log("TutMngr State 1");
                 // Look at your hands
                 textMesh.text = "Kijk naar je handen!";
                 break;
             case 2:
+                Debug.Log("TutMngr State 2");
                 // Pull the triggers to grab items
                 textMesh.text = "Druk de triggers op de achterkant van je \ncontrollers en kijk wat er \ngebeurd met je handen!";
                 break;
             case 3:
+                Debug.Log("TutMngr State 3");
                 textMesh.text = "";
                 if (!isLookingAtShelf)
                 {
@@ -126,6 +129,7 @@ public class TutorialManager : MonoBehaviour {
                 }
                 break;
             case 4:
+                Debug.Log("TutMngr State 4");
                 // Try to grab a pack of milk
                 textMesh.text = "";
                 bool hasPressedSpace = true;
@@ -143,9 +147,11 @@ public class TutorialManager : MonoBehaviour {
                 }
                 break;
             case 5:
+                Debug.Log("TutMngr State 5");
                 textMesh.fontSize = 80;
                 break;
             case 6:
+                Debug.Log("TutMngr State 6");
                 textMesh.text = "";
                 if (!isLookingAtCart)
                 {
@@ -159,13 +165,16 @@ public class TutorialManager : MonoBehaviour {
                 break;
             case 7:
                 // Put it in your cart
+                Debug.Log("TutMngr State 7");
                 cart.GetComponent<Animation>().Play("CartFadeIn");
                 InvokeMethod("ChangeText", 4, "Leg een melkpak in je winkelwagen");
                 break;
             case 8:
+                Debug.Log("TutMngr State 8");
                 // You can also move your cart
                 break;
             case 9:
+                Debug.Log("TutMngr State 9");
                 // Are you ready to begin
                 //textMesh.text = "Richt met je controller naar \neen knop en druk op de trigger \nom een keuze te maken";
                 if (!laser) { 
