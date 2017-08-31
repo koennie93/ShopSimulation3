@@ -117,6 +117,7 @@ public class TutorialVRController : MonoBehaviour
             // Go to state 3 (Try to grab a pack of milk)
             //hasPressedTrigger = true;
             tutorialManager.InvokeMethod("ChangeState", 3, 3);
+            tutorialManager.InvokeMethod("ChangeText", 3, "Kijk naar het witte vierkantje aan de andere kant van de kamer!");
 
         }
         //if (hasPressedTrigger == true)
@@ -175,7 +176,8 @@ public class TutorialVRController : MonoBehaviour
         GameObject gameObject = null;
         direction = Quaternion.AngleAxis(60, transform.right) * transform.forward;
 
-        if (Physics.Raycast(transform.position, direction, out raycastHit) &&
+        //if (Physics.Raycast(transform.position, direction, out raycastHit) &&
+        if (Physics.SphereCast(attachPoint.position, 0.001f, direction, out raycastHit) &&
             raycastHit.transform.gameObject.tag == "Grocery" && raycastHit.distance < 0.1f &&
             !raycastHit.collider.GetComponent<GroceryDataHandler>().inCart) //raycast hit + een ray kleiner dan #  
 
@@ -183,7 +185,7 @@ public class TutorialVRController : MonoBehaviour
             if (tutorialManager.tutorialState == 5)
             {
                 // Go to state 4 (Put it in your cart)
-                tutorialManager.InvokeMethod("ChangeText", 1, "");
+                //tutorialManager.InvokeMethod("ChangeText", 1, "");
                 tutorialManager.InvokeMethod("ChangeState", 10, 6);
             }
 
@@ -202,7 +204,8 @@ public class TutorialVRController : MonoBehaviour
 
         }
 
-        if (Physics.Raycast(transform.position, direction, out raycastHit) &&
+        //if (Physics.Raycast(transform.position, direction, out raycastHit) &&
+        if (Physics.SphereCast(attachPoint.position, 0.001f, direction, out raycastHit) &&
             raycastHit.transform.gameObject.tag == "Basket" && raycastHit.distance < 0.1f &&
             raycastHit.collider.GetComponent<HingeJoint>() == null)
         {
@@ -214,7 +217,8 @@ public class TutorialVRController : MonoBehaviour
             hJoint.connectedBody = attachPoint;
         }
 
-        if (Physics.Raycast(transform.position, direction, out raycastHit) &&
+        //if (Physics.Raycast(transform.position, direction, out raycastHit) &&
+        if (Physics.SphereCast(attachPoint.position, 0.001f, direction, out raycastHit) &&
             raycastHit.transform.gameObject.tag == "Cart" && raycastHit.distance < 0.1f)
         {
             // Cart attach on z-axis (The setting of the position happens in update):
@@ -257,7 +261,6 @@ public class TutorialVRController : MonoBehaviour
             if(tutorialManager.tutorialState == 8)
             {
                 tutorialManager.InvokeMethod("ChangeState", 5, 9);
-                tutorialManager.InvokeMethod("ChangeText", 0, "");
             }
 
             // Detach the cart.

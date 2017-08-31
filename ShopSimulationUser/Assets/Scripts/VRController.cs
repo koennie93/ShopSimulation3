@@ -118,9 +118,12 @@ public class VRController : MonoBehaviour
     {
         RaycastHit raycastHit;
         GameObject gameObject = null;
-        direction = Quaternion.AngleAxis(60, transform.right) * transform.forward;
+        //direction = Quaternion.AngleAxis(60, transform.right) * transform.forward;
+        direction = transform.forward;
+        float radius = 0.008f;
 
-        if (Physics.Raycast(transform.position,direction, out raycastHit) &&
+        //if (Physics.Raycast(transform.position,direction, out raycastHit) &&
+        if (Physics.SphereCast(attachPoint.transform.position, radius, direction, out raycastHit) &&
             raycastHit.transform.gameObject.tag == "Grocery" && raycastHit.distance < 0.1f &&
             !raycastHit.collider.GetComponent<GroceryDataHandler>().inCart) //raycast hit + een ray kleiner dan #  
 
@@ -140,7 +143,8 @@ public class VRController : MonoBehaviour
 
         }
 
-        if (Physics.Raycast(transform.position, direction, out raycastHit) &&
+        //if (Physics.Raycast(transform.position, direction, out raycastHit) &&
+        if (Physics.SphereCast(attachPoint.transform.position, radius, direction, out raycastHit) &&
             raycastHit.transform.gameObject.tag == "Basket" && raycastHit.distance < 0.1f &&
             raycastHit.collider.GetComponent<HingeJoint>() == null) 
         {
@@ -152,7 +156,8 @@ public class VRController : MonoBehaviour
             hJoint.connectedBody = attachPoint;
         }
 
-        if(Physics.Raycast(transform.position, direction, out raycastHit) &&
+        //if(Physics.Raycast(transform.position, direction, out raycastHit) &&
+        if (Physics.SphereCast(attachPoint.transform.position, radius, direction, out raycastHit) &&
             raycastHit.transform.gameObject.tag == "Cart" && raycastHit.distance < 0.1f)
         {   
             // Cart attach on z-axis (The setting of the position happens in update):

@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: e523a658997fbc547a783edf35f21189
-timeCreated: 1504000942
+guid: 5c9a635202edb6e49a3a08e848a54e22
+timeCreated: 1504187491
 licenseType: Free
 ModelImporter:
   serializedVersion: 21
@@ -9,7 +9,7 @@ ModelImporter:
     400000: //RootNode
     2300000: //RootNode
     3300000: //RootNode
-    4300000: sHAMPOO
+    4300000: ShampooHighRes:pCube3
     9500000: //RootNode
   materials:
     importMaterials: 1

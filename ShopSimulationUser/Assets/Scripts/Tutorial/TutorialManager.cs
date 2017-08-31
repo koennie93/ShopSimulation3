@@ -44,7 +44,7 @@ public class TutorialManager : MonoBehaviour {
     {
         // State 1 (Look at your hands)
         tutorialState = 0;
-        textMesh.text = "Verplaats je naar de cirkel!";
+        textMesh.text = "Verplaats je naar de cirkel op de grond!";
         laser = false;
         continueButton.SetActive(false);
         replayButton.SetActive(false);
@@ -52,6 +52,7 @@ public class TutorialManager : MonoBehaviour {
 
     void start()
     {
+        isLookingAtCart = false;
     }
 
     private void Update()
@@ -63,12 +64,12 @@ public class TutorialManager : MonoBehaviour {
 
         if (tutorialState == 3)
         {
-            if (arrow != null)
-            {
-                arrow.gameObject.transform.LookAt(shelfPlane.transform);
-                arrow.transform.Rotate(new Vector3(-90, 0, 0));
-            }
-
+            //if (arrow != null)
+            //{
+            //    arrow.gameObject.transform.LookAt(shelfPlane.transform);
+            //    arrow.transform.Rotate(new Vector3(-90, 0, 0));
+            //}
+            shelfPlane.SetActive(true);
             Vector3 screenPoint = cam.WorldToViewportPoint(shelfPlane.transform.position);
             if (screenPoint.x >= 0.4 && screenPoint.x <= .6 && screenPoint.y >= 0.4 && screenPoint.y <= .6 && screenPoint.z >= 0)
             {
@@ -77,11 +78,13 @@ public class TutorialManager : MonoBehaviour {
         }
         if (tutorialState == 6)
         {
-            if (arrow != null)
-            {
-                arrow.gameObject.transform.LookAt(cart.transform);
-                arrow.transform.Rotate(new Vector3(-90, 0, 0));
-            }
+            //if (arrow != null)
+            //{
+            //    arrow.gameObject.transform.LookAt(cart.transform);
+            //    arrow.transform.Rotate(new Vector3(-90, 0, 0));
+            //}
+            textMesh.text = "Kijk naar het zwarte vierkantje rechts van de schap!";
+            cartPlane.SetActive(true);
             Vector3 screenPoint = cam.WorldToViewportPoint(cartPlane.transform.position);
             if (screenPoint.x >= 0.4 && screenPoint.x <= .6 && screenPoint.y >= 0.4 && screenPoint.y <= .6 && screenPoint.z >= 0)
             {
@@ -90,11 +93,12 @@ public class TutorialManager : MonoBehaviour {
         }
         if (tutorialState == 9)
         {
-            if (arrow != null)
-            {
-                arrow.gameObject.transform.LookAt(continueButton.transform);
-                arrow.transform.Rotate(new Vector3(-90, 0, 0));
-            }
+            //if (arrow != null)
+            //{
+            //    arrow.gameObject.transform.LookAt(continueButton.transform);
+            //    arrow.transform.Rotate(new Vector3(-90, 0, 0));
+            //}
+
         }
         if (tutorialState == 0)
         {
@@ -128,14 +132,9 @@ public class TutorialManager : MonoBehaviour {
                 break;
             case 3:
                 Debug.Log("TutMngr State 3");
-                textMesh.text = "";
-                if (!isLookingAtShelf)
+                if (isLookingAtShelf)
                 {
-                    arrow.SetActive(true);
-                }
-                else
-                {
-                    arrow.SetActive(false);
+                    shelfPlane.SetActive(false);
                     tutorialState = 4;
                 }
                 break;
@@ -159,18 +158,12 @@ public class TutorialManager : MonoBehaviour {
                 break;
             case 5:
                 Debug.Log("TutMngr State 5");
-                textMesh.fontSize = 80;
                 break;
             case 6:
                 Debug.Log("TutMngr State 6");
-                textMesh.text = "";
-                if (!isLookingAtCart)
+                if (isLookingAtCart)
                 {
-                    arrow.SetActive(true);
-                }
-                else
-                {
-                    arrow.SetActive(false);
+                    cartPlane.SetActive(false);
                     tutorialState = 7;
                 }
                 break;
@@ -178,7 +171,7 @@ public class TutorialManager : MonoBehaviour {
                 // Put it in your cart
                 Debug.Log("TutMngr State 7");
                 cart.GetComponent<Animation>().Play("CartFadeIn");
-                InvokeMethod("ChangeText", 4, "Leg een melkpak in je winkelwagen");
+                InvokeMethod("ChangeText", 1, "Leg een melkpak in je winkelwagen");
                 break;
             case 8:
                 Debug.Log("TutMngr State 8");
@@ -190,12 +183,13 @@ public class TutorialManager : MonoBehaviour {
                 //textMesh.text = "Richt met je controller naar \neen knop en druk op de trigger \nom een keuze te maken";
                 if (!laser) { 
                     controller.GetComponent<SteamVR_LaserPointer>().FakeStart();
-                    arrow.SetActive(true);
+                    //arrow.SetActive(true);
                     //cart.SetActive(false);
                     //shelf.SetActive(false);
                     replayButton.SetActive(true);
                     continueButton.SetActive(true);
                     laser = true;
+                    InvokeMethod("ChangeText", 0, "Kijk naar de knoppen aan de andere kant van de kamer \nEn maak een keuze door te richten met je \ncontroller en op de trigger te drukken.");
                 }
                 //Buttons
                 //textMesh.fontSize = 80;
