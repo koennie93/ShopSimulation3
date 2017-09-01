@@ -15,7 +15,6 @@ public class GrocerySpawnHandler : MonoBehaviour {
         if (typeArray[plankId - 1] != null && typeArray[plankId - 1].tag == "Grocery")
         {
             GameObject grocery = Instantiate(typeArray[plankId - 1], transform.position, typeArray[plankId - 1].transform.rotation);
-            //grocery.transform.localScale = transform.parent.parent.parent.parent.parent.localScale;
             grocery.transform.parent = transform;
         }
     }

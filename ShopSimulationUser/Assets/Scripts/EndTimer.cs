@@ -22,17 +22,13 @@ public class EndTimer : MonoBehaviour {
 	void Start () {
         textMesh = textObject.GetComponent<TextMesh>();
         timeLeft = duration;
-	}
-	
+	}	
 	
 	void Update () {
         timeLeft -= Time.deltaTime;
         textMesh.text = ((int)timeLeft).ToString();
 
-        if (timeLeft <= 10)
-        {
-            textMesh.color = Color.red;
-        }
+        if (timeLeft <= 10) textMesh.color = Color.red;        
 
         if(timeLeft <= 0)
         {

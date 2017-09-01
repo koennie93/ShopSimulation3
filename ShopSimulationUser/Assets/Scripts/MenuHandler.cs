@@ -30,9 +30,7 @@ public class MenuHandler : MonoBehaviour {
     private void Update()
     {
         if (!inShelfEditor)
-        {
-            Canvas.SetActive(false);
-        }
+            Canvas.SetActive(false);        
 
         Ray ray = camera.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;

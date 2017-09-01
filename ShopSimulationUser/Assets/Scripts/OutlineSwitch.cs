@@ -15,12 +15,6 @@ public class OutlineSwitch : MonoBehaviour {
         standard = Shader.Find("Standard");
 	}
 	
-	// Update is called once per frame
-	void Update ()
-    {
-		
-	}
-
     private void OnMouseEnter()
     {
         rend.material.shader = outline;
@@ -35,6 +29,5 @@ public class OutlineSwitch : MonoBehaviour {
     private void OnMouseExit()
     {
         rend.material.shader = standard;
-
     }
 }

@@ -15,10 +15,7 @@ public class HeatMapDataImport : MonoBehaviour {
     public Material material;
     
     public TextMesh[] matrixtextRowZero, matrixtextRowOne, matrixtextRowTwo, matrixtextRowThree, matrixtextRowFour;
-
-    //private float[,] matrix = new float[4, 5];
-
-    // Use this for initialization
+    
     void Start () {
 
         Renderer renderer = GetComponent<Renderer>();
@@ -37,15 +34,10 @@ public class HeatMapDataImport : MonoBehaviour {
         matrixDropDown.options.Add(new Dropdown.OptionData() { text = "-" });
 
         foreach (string c in heatMapData)
-        {
-            heatMapDropDown.options.Add(new Dropdown.OptionData() { text = System.IO.Path.GetFileName(c) });
-        }
+             heatMapDropDown.options.Add(new Dropdown.OptionData() { text = System.IO.Path.GetFileName(c) });
+        
         foreach (string c in matrixData)
-        {
-            matrixDropDown.options.Add(new Dropdown.OptionData() { text = System.IO.Path.GetFileName(c) });
-        }
-
-        Debug.Log(heatMapData.Length);
+            matrixDropDown.options.Add(new Dropdown.OptionData() { text = System.IO.Path.GetFileName(c) });      
     }
 
     public string[] HeatMapFilesFromFolder<T>(string folderpath) where T : UnityEngine.UI.Text
@@ -55,9 +47,7 @@ public class HeatMapDataImport : MonoBehaviour {
         for (int i = 0; i < allfiles.Length; i++)
         {
             if (allfiles[i].name.Contains("Pos"))
-            {
-                heatMapNames.Add(allfiles[i].name);
-            }
+                heatMapNames.Add(allfiles[i].name);            
         }
         return heatMapNames.ToArray();
     }
@@ -69,16 +59,13 @@ public class HeatMapDataImport : MonoBehaviour {
         for (int i = 0; i < allfiles.Length; i++)
         {
             if (allfiles[i].name.Contains("Matrix"))
-            {
-                matrixNames.Add(allfiles[i].name);
-            }
+                 matrixNames.Add(allfiles[i].name);            
         }
         return matrixNames.ToArray();
     }
 
     void OnHeatMapValueChanged(int index)
     {
-        Debug.Log("OnHeatMapValueChanged");
         string selection = heatMapDropDown.options[heatMapDropDown.value].text.Substring(0, 25);
         string path = Directory.GetParent(Directory.GetParent(Application.dataPath).FullName).FullName + "\\Shared Data" + "\\Data\\HeatMapData" + selection + "Pos.txt";
         Vector4[] positions = TextToVector4(path);
@@ -120,19 +107,13 @@ public class HeatMapDataImport : MonoBehaviour {
         // Read the text file as an array where every line is a string.
         heatmapPositionLines = File.ReadAllLines(path);
 
-        for (int i = 0; i < heatmapPositionLines.Length; i++)
-        {
-            // Splitting the string array which gives a new array every line, each one of these is added to a list.
+        for (int i = 0; i < heatmapPositionLines.Length; i++) // Splitting the string array which gives a new array every line, each one of these is added to a list.
             heatmapPositionArrayLines.Add(heatmapPositionLines[i].Split(','));
-        }
-
-        for (int i = 0; i < heatmapPositionArrayLines.Count; i++)
-        {
-            // Every string array in the list is converted to a Vector4 and added to a list.
-            heatmapPositionsVector4.Add(new Vector4(float.Parse(heatmapPositionArrayLines[i][0]), float.Parse(heatmapPositionArrayLines[i][1]), float.Parse(heatmapPositionArrayLines[i][2]), float.Parse(heatmapPositionArrayLines[i][3])));
-        }
-
         
+
+        for (int i = 0; i < heatmapPositionArrayLines.Count; i++) // Every string array in the list is converted to a Vector4 and added to a list.
+             heatmapPositionsVector4.Add(new Vector4(float.Parse(heatmapPositionArrayLines[i][0]), float.Parse(heatmapPositionArrayLines[i][1]), float.Parse(heatmapPositionArrayLines[i][2]), float.Parse(heatmapPositionArrayLines[i][3])));
+                
         // Two Vector4 lists are returned
         return heatmapPositionsVector4.ToArray();
     }
@@ -145,10 +126,8 @@ public class HeatMapDataImport : MonoBehaviour {
         float[,] matrix = new float[5, 4];
 
         for (int i = 0; i < matrixLines.Length; i++)
-        {
             strings.Add(matrixLines[i].Split(','));
-        }
-
+        
         for (int i = 0; i < 5; i++)
         {
             //int count = 0;
