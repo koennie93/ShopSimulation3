@@ -14,10 +14,8 @@ public class TutorialSpawnController : MonoBehaviour
         Transform[] tempPlankTypeSelection = GameObject.Find("Planks").GetComponentsInChildren<Transform>();
         for (int i = 0; i < tempPlankTypeSelection.Length; i++)
         {
-            if (tempPlankTypeSelection[i].tag == "Plank")
-                plankTypeSelection.Add(tempPlankTypeSelection[i]);
+            if (tempPlankTypeSelection[i].tag == "Plank") plankTypeSelection.Add(tempPlankTypeSelection[i]);
         }
-
     }
 
     void OnCollisionEnter(Collision col)

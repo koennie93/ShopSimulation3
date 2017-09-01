@@ -812,7 +812,7 @@ SkinnedMeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 60b59b8cb37371e43a9c3659323ec978, type: 2}
+  - {fileID: 2100000, guid: 0947ddce3efe28440b95c0e25a57b6fe, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

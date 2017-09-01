@@ -13,11 +13,6 @@ public class DataHandler : MonoBehaviour {
     JsonData itemJson;
     JsonData matrixJson;
 
-    public void Update()
-    {
-
-    }
-
     public void UpdateMatrix(int x, int y, int amount)
     {
         matrix[x -1 , y -1] += amount;
@@ -26,22 +21,15 @@ public class DataHandler : MonoBehaviour {
     public void UpdateItems(string itemName, int amount)
     {
         bool isInList = false;
-
         for (int i = 0; i < items.Count; i++)
         {
             if (items[i].name == itemName) //Check if item is already in the list.
             {
                 items[i].number += amount; //if its in the list, update quantity.
-                Debug.Log("increased " + itemName + " quantity");
                 isInList = true;
             }
         }
-
-        if(isInList == false)
-        {
-            items.Add(new Item(itemName, amount));
-            Debug.Log(itemName + " Added!");
-        }
+        if(isInList == false) items.Add(new Item(itemName, amount));        
     }
 
     public void ExportData()
@@ -62,9 +50,7 @@ public class DataHandler : MonoBehaviour {
             for (int x = 0; x < matrix.GetLength(0); x++)
             {
                 output += matrix[x, y].ToString();
-                if(x != 3)
-                output += ",";
-                
+                if(x != 3) output += ",";                
             }
             streamWriter.WriteLine(output);
             matrixList.Add(output);

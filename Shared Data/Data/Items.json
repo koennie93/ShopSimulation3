@@ -1,7 +1,15 @@
 
 [
   {
+    "name" : "Karne melk",
+    "number" : 3
+  },
+  {
     "name" : "Halfvol",
     "number" : 2
+  },
+  {
+    "name" : "Bio melk",
+    "number" : 1
   }
 ]

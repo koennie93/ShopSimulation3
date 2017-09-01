@@ -8,13 +8,11 @@ public class ViveHeatMapHeadSetController : MonoBehaviour {
     RaycastHit heatMapRayCast;
 
     public Heatmap heatMap;
-
-    //private float nextActionTime = 1.0f;
+    
     public float period = 0.0f;
 
     // Use this for initialization
     void Start () {
-       // direction = transform.TransformDirection(Vector3.forward);
         Ray direction = new Ray(transform.position, transform.forward);
     }
 	
@@ -34,8 +32,6 @@ public class ViveHeatMapHeadSetController : MonoBehaviour {
             }
             period = 0;
         }
-        period += UnityEngine.Time.deltaTime;
-
-        
+        period += UnityEngine.Time.deltaTime;        
     }
 }

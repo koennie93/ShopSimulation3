@@ -16,28 +16,13 @@ public class Heatmap : MonoBehaviour
 
     bool updateList = false;
     JsonData heatMapJson;
-
-    void Update()
-    {
-
-    }
+    
 
     public void InputHeatMapPositions(Vector3 position, float intensity, float radius)
     {
         positionList.Add(position);
         propertiesList.Add(new Vector4(intensity, radius, 0, 0));
-    }
-
-
-    //void ShowHeatMap()
-    //{
-    //    Vector4[] positions = positionList.GetRange(0, positionList.Count).ToArray();
-    //    Vector4[] properties = propertiesList.GetRange(0, propertiesList.Count).ToArray();
-        
-    //    material.SetInt("_Points_Length", positions.Length);
-    //    material.SetVectorArray("_Points", positions);
-    //    material.SetVectorArray("_Properties", properties);
-    //}
+    }    
 
     public void ExportHeatMapData()
     {

@@ -56,16 +56,11 @@ public class VRController : MonoBehaviour
         HandleOutline();
         StateManager();
 
-        if (cart != null)
-        {
-            // Cart follow the controller on its x-axis only:
-            cart.transform.position = new Vector3(attachPoint.position.x, cart.transform.position.y, cart.transform.position.z);
-        }
+        if (cart != null) // Cart follow the controller on its x-axis only:
+            cart.transform.position = new Vector3(attachPoint.position.x, cart.transform.position.y, cart.transform.position.z);        
 
         if (SceneManager.GetActiveScene().name != "Menu")
-        {
-            vrGui();
-        }
+            vrGui();        
     }
 
     private void vrGui()
@@ -74,12 +69,8 @@ public class VRController : MonoBehaviour
         if (device.GetTouchDown(SteamVR_Controller.ButtonMask.Trigger)) {
             RaycastHit hit;
             if (Physics.Raycast(transform.position, transform.forward, out hit))
-            {
                 if (hit.collider.name == "Exit")
-                {
-                    LoadScene("Menu");   
-                }
-            }
+                    LoadScene("Menu");               
         }
     }
 
@@ -118,11 +109,9 @@ public class VRController : MonoBehaviour
     {
         RaycastHit raycastHit;
         GameObject gameObject = null;
-        //direction = Quaternion.AngleAxis(60, transform.right) * transform.forward;
         direction = transform.forward;
         float radius = 0.008f;
-
-        //if (Physics.Raycast(transform.position,direction, out raycastHit) &&
+        
         if (Physics.SphereCast(attachPoint.transform.position, radius, direction, out raycastHit) &&
             raycastHit.transform.gameObject.tag == "Grocery" && raycastHit.distance < 0.1f &&
             !raycastHit.collider.GetComponent<GroceryDataHandler>().inCart) //raycast hit + een ray kleiner dan #  
@@ -176,11 +165,8 @@ public class VRController : MonoBehaviour
             DestroyImmediate(joint);
             joint = null;
 
-            if (go.tag == "Grocery")
-            {
-                HandleChild(go);
-            }
-            
+            if (go.tag == "Grocery") HandleChild(go);
+                        
             var origin = trackedObj.origin ? trackedObj.origin : trackedObj.transform.parent;
             if (origin != null)
             {
@@ -194,12 +180,7 @@ public class VRController : MonoBehaviour
             }
         }
 
-        if(cart != null)
-        {
-            // Detach the cart.
-            //cart.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
-            cart = null;
-        }
+        if(cart != null) cart = null;        
     }
 
     void HandleChild(GameObject grocery)
@@ -230,9 +211,7 @@ public class VRController : MonoBehaviour
                 grocery.GetComponent<Rigidbody>().isKinematic = true;
                 grocery.gameObject.transform.SetParent(closestSnapZone.transform);
             }
-        }
-        
-
+        }      
         inRange.Clear();
     }
 
@@ -248,10 +227,8 @@ public class VRController : MonoBehaviour
     void EmptyShader(Renderer render)
     {
         if (showShaders)
-        {
             if (render != null)
-                render.material.shader = empty;
-        }
+                render.material.shader = empty;        
     }
 
     void HandleOutline()
@@ -297,9 +274,7 @@ public class VRController : MonoBehaviour
                 }
             }
             if(joint != null)
-            {
-                EmptyShader(rend);
-            }
+                EmptyShader(rend);            
         }
     }
 
@@ -319,9 +294,6 @@ public class VRController : MonoBehaviour
     private void OnTriggerExit(Collider collision)
     {
         if (inRange.Contains(collision.gameObject))
-        {
-            inRange.Remove(collision.gameObject);
-        }       
-        
+            inRange.Remove(collision.gameObject);       
     }
 }

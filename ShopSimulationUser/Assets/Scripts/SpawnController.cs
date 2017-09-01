@@ -12,11 +12,8 @@ public class SpawnController : MonoBehaviour {
     {
         Transform[] tempPlankTypeSelection = GameObject.Find("Planks").GetComponentsInChildren<Transform>();
         for (int i = 0; i < tempPlankTypeSelection.Length; i++)
-        {
             if(tempPlankTypeSelection[i].tag == "Plank")
-                plankTypeSelection.Add(tempPlankTypeSelection[i]);
-        }
-        
+                plankTypeSelection.Add(tempPlankTypeSelection[i]);       
     }
     
     void OnCollisionEnter(Collision col)
@@ -32,11 +29,8 @@ public class SpawnController : MonoBehaviour {
                         Transform[] tempPlankSpawnTypeSelection = plankTypeSelection[i].transform.Find("Spawns").GetComponentsInChildren<Transform>();
                         List<Transform> plankSpawnTypeSelection = new List<Transform>();
                         for (int temp = 0; temp < tempPlankSpawnTypeSelection.Length; temp++)
-                        {
                             if (tempPlankSpawnTypeSelection[temp].tag == "SnapZone")
-                                plankSpawnTypeSelection.Add(tempPlankSpawnTypeSelection[temp]);
-                            
-                        }
+                                plankSpawnTypeSelection.Add(tempPlankSpawnTypeSelection[temp]);                       
 
                         for (int j = 0; j < plankSpawnTypeSelection.Count; j++)
                         {

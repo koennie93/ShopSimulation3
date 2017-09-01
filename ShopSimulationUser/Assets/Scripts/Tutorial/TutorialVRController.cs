@@ -64,28 +64,15 @@ public class TutorialVRController : MonoBehaviour
         if (joint != null || hJoint != null || cart != null) anim.Play("Grip");
 
         Vector3 screenPoint = cam.WorldToViewportPoint(transform.position);
-        if (tutorialManager.tutorialState == 1)
-        {
-            if (screenPoint.x >= 0.4 && screenPoint.x <= .6 && screenPoint.y >= 0.4 && screenPoint.y <= .6 && screenPoint.z >= 0)
-            {
-                // Go to state 2 (Pull the triggers to grab items)
-                tutorialManager.tutorialState = 2;
-            }            
-        }
 
+        if (tutorialManager.tutorialState == 1)
+            if (screenPoint.x >= 0.4 && screenPoint.x <= .6 && screenPoint.y >= 0.4 && screenPoint.y <= .6 && screenPoint.z >= 0) tutorialManager.tutorialState = 2;
+        
         HandleOutline();
         StateManager();
 
-        if (cart != null)
-        {
-            // Cart follow the controller on its x-axis only:
-            cart.transform.position = new Vector3(attachPoint.position.x, cart.transform.position.y, cart.transform.position.z);
-        }
-
-        if (SceneManager.GetActiveScene().name != "Menu") {
-            vrGui();
-        }
-
+        if (cart != null) cart.transform.position = new Vector3(attachPoint.position.x, cart.transform.position.y, cart.transform.position.z);        
+        if (SceneManager.GetActiveScene().name != "Menu")  vrGui();
     }
 
     private void vrGui()
@@ -95,12 +82,7 @@ public class TutorialVRController : MonoBehaviour
         {
             RaycastHit hit;
             if (Physics.Raycast(transform.position, transform.forward, out hit))
-            {
-                if (hit.collider.name == "Continue")
-                {
-                    LoadScene("VRScene");
-                }
-            }
+                if (hit.collider.name == "Continue") LoadScene("VRScene");       
         }
     }
 
@@ -114,39 +96,10 @@ public class TutorialVRController : MonoBehaviour
         var device = SteamVR_Controller.Input((int)trackedObj.index);
         if (tutorialManager.tutorialState == 2 && device.GetTouchDown(SteamVR_Controller.ButtonMask.Trigger))
         {
-            // Go to state 3 (Try to grab a pack of milk)
-            //hasPressedTrigger = true;
             tutorialManager.InvokeMethod("ChangeState", 3, 3);
             tutorialManager.InvokeMethod("ChangeText", 3, "Kijk naar het witte vierkantje aan de andere kant van de kamer!");
 
         }
-        //if (hasPressedTrigger == true)
-        //{
-        //    waitTime -= Time.deltaTime;
-        //    if (waitTime <= 0f)
-        //    {
-        //        hasPressedTrigger = false;
-        //        tutorialManager.tutorialState = 8;
-        //    }
-        //}
-
-        //if (tutorialManager.tutorialState == 6 && device.GetTouchDown(SteamVR_Controller.ButtonMask.Trigger))
-        //{
-        //    Debug.Log(name);
-        //    // Check if left or right controller and act accordingly
-        //    if (name.Contains("left"))
-        //    {
-        //        // Stay in tutorial
-        //        tutorialManager.tutorialState = 0;
-        //    }
-        //    else if (name.Contains("right"))
-        //    {
-        //        // Continue to VR Room
-        //        SceneManager.LoadScene("VRScene");
-        //    }
-        //}
-
-
         if ((joint == null || hJoint == null || cart == null) && device.GetTouchDown(SteamVR_Controller.ButtonMask.Trigger))
         {
             AttachJoint(); 
@@ -182,26 +135,18 @@ public class TutorialVRController : MonoBehaviour
             !raycastHit.collider.GetComponent<GroceryDataHandler>().inCart) //raycast hit + een ray kleiner dan #  
 
         {
-            if (tutorialManager.tutorialState == 5)
-            {
-                // Go to state 4 (Put it in your cart)
-                //tutorialManager.InvokeMethod("ChangeText", 1, "");
-                tutorialManager.InvokeMethod("ChangeState", 10, 6);
-            }
+            if (tutorialManager.tutorialState == 5) tutorialManager.InvokeMethod("ChangeState", 10, 6);            
 
             gameObject = raycastHit.collider.gameObject; //het object dat de ray raakt wordt gezet in gameObject
-
             goParent = gameObject.transform.parent;
             gameObject.transform.parent = null;
 
             // Hardcode
             gameObject.GetComponent<Rigidbody>().isKinematic = false;
-
             gameObject.transform.position = attachPoint.transform.position; //Verplaatst het object naar de controller
 
             joint = gameObject.AddComponent<FixedJoint>();
             joint.connectedBody = attachPoint;
-
         }
 
         //if (Physics.Raycast(transform.position, direction, out raycastHit) &&
@@ -218,14 +163,8 @@ public class TutorialVRController : MonoBehaviour
         }
 
         //if (Physics.Raycast(transform.position, direction, out raycastHit) &&
-        if (Physics.SphereCast(attachPoint.position, 0.001f, direction, out raycastHit) &&
-            raycastHit.transform.gameObject.tag == "Cart" && raycastHit.distance < 0.1f)
-        {
-            // Cart attach on z-axis (The setting of the position happens in update):
-            cart = raycastHit.collider.gameObject;
-            //cart.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezeRotation;
-        }
-
+        if (Physics.SphereCast(attachPoint.position, 0.001f, direction, out raycastHit) && raycastHit.transform.gameObject.tag == "Cart" && raycastHit.distance < 0.1f)
+                cart = raycastHit.collider.gameObject;       
     }
 
     void DetachJoint()
@@ -238,11 +177,8 @@ public class TutorialVRController : MonoBehaviour
             DestroyImmediate(joint);
             joint = null;
 
-            if (go.tag == "Grocery")
-            {
-                HandleChild(go);
-            }
-
+            if (go.tag == "Grocery")HandleChild(go);
+            
             var origin = trackedObj.origin ? trackedObj.origin : trackedObj.transform.parent;
             if (origin != null)
             {
@@ -258,13 +194,8 @@ public class TutorialVRController : MonoBehaviour
 
         if (cart != null)
         {
-            if(tutorialManager.tutorialState == 8)
-            {
-                tutorialManager.InvokeMethod("ChangeState", 5, 9);
-            }
-
-            // Detach the cart.
-            //cart.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
+            if(tutorialManager.tutorialState == 8) tutorialManager.InvokeMethod("ChangeState", 5, 9);
+            
             cart = null;
         }
     }
@@ -298,8 +229,6 @@ public class TutorialVRController : MonoBehaviour
                 grocery.gameObject.transform.SetParent(closestSnapZone.transform);
             }
         }
-
-
         inRange.Clear();
     }
 
@@ -315,10 +244,8 @@ public class TutorialVRController : MonoBehaviour
     void EmptyShader(Renderer render)
     {
         if (showShaders)
-        {
             if (render != null)
-                render.material.shader = empty;
-        }
+                render.material.shader = empty;        
     }
 
     void HandleOutline()
@@ -364,9 +291,7 @@ public class TutorialVRController : MonoBehaviour
                 }
             }
             if (joint != null)
-            {
-                EmptyShader(rend);
-            }
+                EmptyShader(rend);            
         }
     }
 
@@ -386,9 +311,6 @@ public class TutorialVRController : MonoBehaviour
     private void OnTriggerExit(Collider collision)
     {
         if (inRange.Contains(collision.gameObject))
-        {
-            inRange.Remove(collision.gameObject);
-        }
-
+            inRange.Remove(collision.gameObject);       
     }
 }
