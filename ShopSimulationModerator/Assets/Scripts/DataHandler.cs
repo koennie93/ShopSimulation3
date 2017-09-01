@@ -12,29 +12,6 @@ public class DataHandler : MonoBehaviour {
     List<string> matrixList = new List<string>();
     JsonData itemJson;
     JsonData matrixJson;
-	
-	// Update is called once per frame
-	void Update () {
-        //if (Input.GetKeyDown(KeyCode.KeypadEnter))
-        //{
-        //     UpdateItems("Melk", 5);
-        //}
-        //if (Input.GetKeyDown(KeyCode.K))
-        //{
-        //    Debug.Log("print items");
-        //    foreach (Item i in items)
-        //    {
-        //        print(i.name + " " + i.number);
-        //    }
-        //}
-        //if (Input.GetKeyDown(KeyCode.W))
-        //{
-        //    ExportData();
-        //    //itemJson = JsonMapper.ToJson(matrixList);
-        //    //File.WriteAllText(Application.dataPath + "/Resources/Data/MatrixData/" + System.DateTime.Now.ToString("MM-dd-yy_hh-mm-ss") + "-MatrixTest.json", itemJson.ToString());
-        //    //Debug.Log("added");
-        //}
-    }
 
     public void UpdateMatrix(int x, int y, int amount)
     {
@@ -50,7 +27,6 @@ public class DataHandler : MonoBehaviour {
             if (items[i].name == itemName) //Check if item is already in the list.
             {
                 items[i].number += amount; //if its in the list, update quantity.
-                Debug.Log("increased " + itemName + " quantity");
                 isInList = true;
             }
         }
@@ -58,7 +34,6 @@ public class DataHandler : MonoBehaviour {
         if(isInList == false)
         {
             items.Add(new Item(itemName, amount));
-            Debug.Log(itemName + " Added!");
         }
     }
 
@@ -85,7 +60,6 @@ public class DataHandler : MonoBehaviour {
         streamWriter.Close();
 
         itemJson = JsonMapper.ToJson(items);
-        //File.WriteAllText(Application.dataPath + "/Data/ItemsTest.json", itemJson.ToString());
         itemJson += JsonMapper.ToJson(matrixList);
         File.WriteAllText(Application.dataPath + "/Data/ItemsTest.json", itemJson.ToString());
     }

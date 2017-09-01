@@ -16,8 +16,6 @@ public class HeatMapDataImport : MonoBehaviour {
     
     public TextMesh[] matrixtextRowZero, matrixtextRowOne, matrixtextRowTwo, matrixtextRowThree, matrixtextRowFour;
 
-    //private float[,] matrix = new float[4, 5];
-
     // Use this for initialization
     void Start () {
 
@@ -31,7 +29,6 @@ public class HeatMapDataImport : MonoBehaviour {
 #else
         string[] heatMapData = HeatMapFilesFromFolder<Text>(Directory.GetParent(Application.dataPath).FullName + "\\Shared Data" + "\\Data\\MatrixData");
 #endif
-        //string[] matrixData = MatrixFilesFromFolder<Text>(Directory.GetParent(Directory.GetParent(Application.dataPath).FullName).FullName + "\\Shared Data" + "\\Data\\MatrixData");
 
         heatMapDropDown.options.Clear();
 
@@ -39,7 +36,6 @@ public class HeatMapDataImport : MonoBehaviour {
 
         foreach (string c in heatMapData)
         {
-            //heatMapDropDown.options.Add(new Dropdown.OptionData() { text = System.IO.Path.GetFileName(c) });
             string opt = c.Split('\\')[c.Split('\\').Length - 1];
             heatMapDropDown.options.Add(new Dropdown.OptionData() { text = opt });
         }
