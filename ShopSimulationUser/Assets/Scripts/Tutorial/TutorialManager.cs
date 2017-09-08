@@ -14,7 +14,11 @@ public class TutorialManager : MonoBehaviour {
     TutorialGrocerySpawnHandler spawnhandler = new TutorialGrocerySpawnHandler();
 
     float spaceTimer = 0;
+    float materialTimer;
+    bool changed;
 
+    [SerializeField]
+    private Material metalMat;
     Color colorStart;
     Color colorEnd;
     [SerializeField]
@@ -48,6 +52,8 @@ public class TutorialManager : MonoBehaviour {
         laser = false;
         continueButton.SetActive(false);
         replayButton.SetActive(false);
+        materialTimer = 2;
+        changed = false;
     }
 
     void start()
@@ -123,6 +129,16 @@ public class TutorialManager : MonoBehaviour {
                 }
                 break;
             case 5:
+                materialTimer -= Time.deltaTime;
+                if (materialTimer <= 0 && !changed)
+                {
+                    GameObject[] children = GameObject.FindGameObjectsWithTag("TutorialShelfMetal");
+                    foreach (GameObject child in children)
+                    {
+                        child.GetComponent<Renderer>().material = metalMat;
+                    }
+                    changed = true;
+                }
                 break;
             case 6:
                 if (isLookingAtCart)

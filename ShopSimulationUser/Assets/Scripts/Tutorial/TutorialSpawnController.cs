@@ -22,7 +22,11 @@ public class TutorialSpawnController : MonoBehaviour
     {
         if (col.gameObject.tag == "Grocery")
         {
-            if (col.gameObject.GetComponent<FixedJoint>() == null)
+            if (col.transform.parent != null && col.transform.parent.name == "Content")
+            {
+                col.gameObject.transform.position = GameObject.Find("ContentSpawn").transform.position;
+            }
+            else if (col.gameObject.GetComponent<FixedJoint>() == null)
             {
                 for (int i = 0; i < plankTypeSelection.Count; i++)
                 {

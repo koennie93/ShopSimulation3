@@ -26,12 +26,12 @@ public class BasketController : MonoBehaviour {
         
     }
 
-    private void OnTriggerEnter(Collider col)
+    private void OnTriggerStay(Collider col)
     {
         if(col.tag == "Grocery")
         {
             gData = col.GetComponent<GroceryDataHandler>();
-            if (!col.GetComponent<Rigidbody>().isKinematic && !gData.inCart)
+            if (col.GetComponent<FixedJoint>() == null && !gData.inCart)
             {
                 // Grocery has been added to the shopping cart.
                 if (isColliding) return;
@@ -39,7 +39,7 @@ public class BasketController : MonoBehaviour {
                 gData.inCart = true;
                 dataHandler.UpdateItems(gData.groceryName, 1);
                 dataHandler.UpdateMatrix((int)gData.shelfPlankX, (int)gData.shelfPlankY, 1);
-                col.transform.parent = transform.parent.Find("Content");
+                col.transform.parent = transform.parent.parent.Find("Content");
             }
         }
     }

@@ -20,7 +20,12 @@ public class SpawnController : MonoBehaviour {
     {
         if (col.gameObject.tag == "Grocery")
         {
-            if (col.gameObject.GetComponent<FixedJoint>() == null ) {
+            if(col.transform.parent != null && col.transform.parent.name == "Content")
+            {
+                Debug.Log(col.transform.parent);
+                col.gameObject.transform.position = GameObject.Find("ContentSpawn").transform.position;
+            }
+            else if (col.gameObject.GetComponent<FixedJoint>() == null) {
                 for (int i = 0; i < plankTypeSelection.Count; i++)
                 {
                     if (col.gameObject.GetComponent<GroceryDataHandler>().groceryName == plankTypeSelection[i].GetComponent<PlankSpawnController>().type)

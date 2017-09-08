@@ -38,11 +38,11 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.1273174, g: 0.13414761, b: 0.12107885, a: 1}
+  m_IndirectSpecularColor: {r: 0.12731749, g: 0.13414757, b: 0.1210787, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
-  serializedVersion: 11
+  serializedVersion: 9
   m_GIWorkflowMode: 0
   m_GISettings:
     serializedVersion: 2
@@ -54,7 +54,7 @@ LightmapSettings:
     m_EnableBakedLightmaps: 1
     m_EnableRealtimeLightmaps: 1
   m_LightmapEditorSettings:
-    serializedVersion: 9
+    serializedVersion: 8
     m_Resolution: 2
     m_BakeResolution: 40
     m_TextureWidth: 1024
@@ -87,7 +87,7 @@ LightmapSettings:
     m_PVRFilteringAtrousNormalSigma: 1
     m_PVRFilteringAtrousPositionSigma: 1
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_ShadowMaskMode: 2
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -391,8 +391,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f21bbc2e0be9f84f8b557214f90ee27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnTypes: []
-  plankTypeSelection: []
 --- !u!95 &40118055
 Animator:
   serializedVersion: 3
@@ -1255,8 +1253,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f21bbc2e0be9f84f8b557214f90ee27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnTypes: []
-  plankTypeSelection: []
 --- !u!95 &107688658
 Animator:
   serializedVersion: 3
@@ -1664,8 +1660,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f21bbc2e0be9f84f8b557214f90ee27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnTypes: []
-  plankTypeSelection: []
 --- !u!95 &149425992
 Animator:
   serializedVersion: 3
@@ -3023,8 +3017,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f21bbc2e0be9f84f8b557214f90ee27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnTypes: []
-  plankTypeSelection: []
 --- !u!95 &302700801
 Animator:
   serializedVersion: 3
@@ -4876,8 +4868,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f21bbc2e0be9f84f8b557214f90ee27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnTypes: []
-  plankTypeSelection: []
 --- !u!95 &477584574
 Animator:
   serializedVersion: 3
@@ -6282,20 +6272,6 @@ Light:
   m_Lightmapping: 4
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
-  m_FalloffTable:
-    m_Table[0]: 0
-    m_Table[1]: 0
-    m_Table[2]: 0
-    m_Table[3]: 0
-    m_Table[4]: 0
-    m_Table[5]: 0
-    m_Table[6]: 0
-    m_Table[7]: 0
-    m_Table[8]: 0
-    m_Table[9]: 0
-    m_Table[10]: 0
-    m_Table[11]: 0
-    m_Table[12]: 0
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
   m_ShadowRadius: 0
@@ -8998,7 +8974,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.75735295, g: 0.75735295, b: 0.75735295, a: 0}
+  m_BackGroundColor: {r: 0.125, g: 0.125, b: 0.125, a: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
@@ -9924,8 +9900,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f21bbc2e0be9f84f8b557214f90ee27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnTypes: []
-  plankTypeSelection: []
 --- !u!95 &929472390
 Animator:
   serializedVersion: 3
@@ -10299,8 +10273,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f21bbc2e0be9f84f8b557214f90ee27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnTypes: []
-  plankTypeSelection: []
 --- !u!95 &959036645
 Animator:
   serializedVersion: 3
@@ -10455,8 +10427,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f21bbc2e0be9f84f8b557214f90ee27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnTypes: []
-  plankTypeSelection: []
 --- !u!95 &972866848
 Animator:
   serializedVersion: 3
@@ -11061,8 +11031,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f21bbc2e0be9f84f8b557214f90ee27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnTypes: []
-  plankTypeSelection: []
 --- !u!95 &1039377417
 Animator:
   serializedVersion: 3
@@ -11900,8 +11868,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f21bbc2e0be9f84f8b557214f90ee27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnTypes: []
-  plankTypeSelection: []
 --- !u!95 &1097270860
 Animator:
   serializedVersion: 3
@@ -12173,8 +12139,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f21bbc2e0be9f84f8b557214f90ee27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnTypes: []
-  plankTypeSelection: []
 --- !u!95 &1110210347
 Animator:
   serializedVersion: 3
@@ -15806,8 +15770,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f21bbc2e0be9f84f8b557214f90ee27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnTypes: []
-  plankTypeSelection: []
 --- !u!95 &1548133035
 Animator:
   serializedVersion: 3
@@ -16036,8 +15998,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f21bbc2e0be9f84f8b557214f90ee27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnTypes: []
-  plankTypeSelection: []
 --- !u!95 &1571313816
 Animator:
   serializedVersion: 3
@@ -16669,7 +16629,6 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
 --- !u!4 &1707476632
 Transform:
   m_ObjectHideFlags: 0
@@ -17908,20 +17867,6 @@ Light:
   m_Lightmapping: 4
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
-  m_FalloffTable:
-    m_Table[0]: 0
-    m_Table[1]: 0
-    m_Table[2]: 0
-    m_Table[3]: 0
-    m_Table[4]: 0
-    m_Table[5]: 0
-    m_Table[6]: 0
-    m_Table[7]: 0
-    m_Table[8]: 0
-    m_Table[9]: 0
-    m_Table[10]: 0
-    m_Table[11]: 0
-    m_Table[12]: 0
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
   m_ShadowRadius: 0
@@ -19735,8 +19680,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f21bbc2e0be9f84f8b557214f90ee27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnTypes: []
-  plankTypeSelection: []
 --- !u!95 &2004845865
 Animator:
   serializedVersion: 3
@@ -20057,8 +20000,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f21bbc2e0be9f84f8b557214f90ee27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnTypes: []
-  plankTypeSelection: []
 --- !u!95 &2024703506
 Animator:
   serializedVersion: 3
@@ -21184,8 +21125,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f21bbc2e0be9f84f8b557214f90ee27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnTypes: []
-  plankTypeSelection: []
 --- !u!95 &2121830147
 Animator:
   serializedVersion: 3

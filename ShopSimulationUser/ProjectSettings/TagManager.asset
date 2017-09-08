@@ -14,6 +14,8 @@ TagManager:
   - HeatMapPlane
   - Cart
   - Number
+  - Finger
+  - TutorialShelfMetal
   layers:
   - Default
   - TransparentFX

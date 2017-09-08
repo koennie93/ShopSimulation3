@@ -1,18 +1,18 @@
+Shampoo Red
+Shampoo Yellow
+Shampoo Green
 Empty
-Empty
-Empty
-Empty
-Empty
+Shampoo Black
+Can Fanta
+Can Energy
+Can Cola
 Bio melk
-Bio melk
-Empty
-Empty
-Karne melk
-Karne melk
-Empty
-Empty
 Halfvol
-Halfvol
+Karne melk
+Volle melk
+Empty
+Empty
+Empty
 Empty
 Empty
 Empty

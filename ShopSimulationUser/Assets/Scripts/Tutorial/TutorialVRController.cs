@@ -71,7 +71,7 @@ public class TutorialVRController : MonoBehaviour
         HandleOutline();
         StateManager();
 
-        if (cart != null) cart.transform.position = new Vector3(attachPoint.position.x, cart.transform.position.y, cart.transform.position.z);        
+        if (cart != null) cart.transform.parent.position = new Vector3(attachPoint.position.x, cart.transform.parent.position.y, cart.transform.parent.position.z);
         if (SceneManager.GetActiveScene().name != "Menu")  vrGui();
     }
 
@@ -143,6 +143,8 @@ public class TutorialVRController : MonoBehaviour
 
             // Hardcode
             gameObject.GetComponent<Rigidbody>().isKinematic = false;
+            gameObject.GetComponent<BoxCollider>().enabled = false;
+            gameObject.GetComponent<MeshCollider>().enabled = false;
             gameObject.transform.position = attachPoint.transform.position; //Verplaatst het object naar de controller
 
             joint = gameObject.AddComponent<FixedJoint>();
@@ -160,11 +162,7 @@ public class TutorialVRController : MonoBehaviour
             gameObject.transform.position = attachPoint.transform.position;
             hJoint = gameObject.AddComponent<HingeJoint>();
             hJoint.connectedBody = attachPoint;
-        }
-
-        //if (Physics.Raycast(transform.position, direction, out raycastHit) &&
-        if (Physics.SphereCast(attachPoint.position, 0.001f, direction, out raycastHit) && raycastHit.transform.gameObject.tag == "Cart" && raycastHit.distance < 0.1f)
-                cart = raycastHit.collider.gameObject;       
+        }     
     }
 
     void DetachJoint()
@@ -207,6 +205,8 @@ public class TutorialVRController : MonoBehaviour
         direction = Quaternion.AngleAxis(60, transform.right) * transform.forward;
         float prevDistance = 100;
         gData.inCart = false;
+        grocery.GetComponent<BoxCollider>().enabled = true;
+        grocery.GetComponent<MeshCollider>().enabled = true;
 
         for (int i = 0; i < inRange.Count; i++)
         {
@@ -304,6 +304,15 @@ public class TutorialVRController : MonoBehaviour
              !inRange.Contains(collision.gameObject))
             {
                 inRange.Add(collision.gameObject);
+            }
+        }
+
+        if (collision.gameObject.tag == "Cart" && cart == null)
+        {
+            var device = SteamVR_Controller.Input((int)trackedObj.index);
+            if (device.GetTouchDown(SteamVR_Controller.ButtonMask.Trigger))
+            {
+                cart = collision.gameObject;
             }
         }
     }

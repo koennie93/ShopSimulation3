@@ -57,7 +57,7 @@ public class VRController : MonoBehaviour
         StateManager();
 
         if (cart != null) // Cart follow the controller on its x-axis only:
-            cart.transform.position = new Vector3(attachPoint.position.x, cart.transform.position.y, cart.transform.position.z);        
+            cart.transform.parent.position = new Vector3(attachPoint.position.x, cart.transform.parent.position.y, cart.transform.parent.position.z);        
 
         if (SceneManager.GetActiveScene().name != "Menu")
             vrGui();        
@@ -124,7 +124,8 @@ public class VRController : MonoBehaviour
 
             // Hardcode
             gameObject.GetComponent<Rigidbody>().isKinematic = false;
-
+            gameObject.GetComponent<BoxCollider>().enabled = false;
+            gameObject.GetComponent<MeshCollider>().enabled = false;
             gameObject.transform.position = attachPoint.transform.position; //Verplaatst het object naar de controller
 
             joint = gameObject.AddComponent<FixedJoint>();
@@ -133,7 +134,8 @@ public class VRController : MonoBehaviour
         }
 
         //if (Physics.Raycast(transform.position, direction, out raycastHit) &&
-        if (Physics.SphereCast(attachPoint.transform.position, radius, direction, out raycastHit) &&
+        Vector3 sphereOrigin = new Vector3(attachPoint.transform.position.x, attachPoint.transform.position.y, attachPoint.transform.position.z + radius);
+        if (Physics.SphereCast(sphereOrigin, radius, direction, out raycastHit) &&
             raycastHit.transform.gameObject.tag == "Basket" && raycastHit.distance < 0.1f &&
             raycastHit.collider.GetComponent<HingeJoint>() == null) 
         {
@@ -145,14 +147,11 @@ public class VRController : MonoBehaviour
             hJoint.connectedBody = attachPoint;
         }
 
-        //if(Physics.Raycast(transform.position, direction, out raycastHit) &&
-        if (Physics.SphereCast(attachPoint.transform.position, radius, direction, out raycastHit) &&
-            raycastHit.transform.gameObject.tag == "Cart" && raycastHit.distance < 0.1f)
-        {   
-            // Cart attach on z-axis (The setting of the position happens in update):
-            cart = raycastHit.collider.gameObject;
-            //cart.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezeRotation;
-        }
+        //if (Physics.SphereCast(attachPoint.transform.position, .1f, direction, out raycastHit) &&
+        //    raycastHit.transform.gameObject.tag == "Cart" && raycastHit.distance < 0.1f)
+        //{   
+        //    cart = raycastHit.collider.gameObject;
+        //}
     }
 
     void DetachJoint()
@@ -166,7 +165,9 @@ public class VRController : MonoBehaviour
             joint = null;
 
             if (go.tag == "Grocery") HandleChild(go);
-                        
+
+            
+
             var origin = trackedObj.origin ? trackedObj.origin : trackedObj.transform.parent;
             if (origin != null)
             {
@@ -190,6 +191,8 @@ public class VRController : MonoBehaviour
         direction = Quaternion.AngleAxis(60, transform.right) * transform.forward;
         float prevDistance = 100;
         gData.inCart = false;
+        grocery.GetComponent<BoxCollider>().enabled = true;
+        grocery.GetComponent<MeshCollider>().enabled = true;
 
         for (int i = 0; i < inRange.Count; i++)
         {
@@ -288,7 +291,15 @@ public class VRController : MonoBehaviour
             {
                 inRange.Add(collision.gameObject);
             }
-        }            
+        }
+
+        if (collision.gameObject.tag == "Cart" && cart == null)
+        {
+            var device = SteamVR_Controller.Input((int)trackedObj.index);
+            if (device.GetTouchDown(SteamVR_Controller.ButtonMask.Trigger)) {
+                cart = collision.gameObject;
+            }
+        }
     }
 
     private void OnTriggerExit(Collider collision)
