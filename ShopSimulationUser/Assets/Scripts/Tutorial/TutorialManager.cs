@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class TutorialManager : MonoBehaviour {
 
+    
+
     [HideInInspector]
     public int tutorialState;
     [SerializeField]
@@ -27,7 +29,7 @@ public class TutorialManager : MonoBehaviour {
     private GameObject cart;
     private float duration = 5;
     [SerializeField]
-    private GameObject continueButton, replayButton;
+    private GameObject continueButton, replayButton, background;
     [SerializeField]
     private GameObject controller;
     [SerializeField]
@@ -52,6 +54,7 @@ public class TutorialManager : MonoBehaviour {
         laser = false;
         continueButton.SetActive(false);
         replayButton.SetActive(false);
+        background.SetActive(false);
         materialTimer = 2;
         changed = false;
     }
@@ -158,6 +161,7 @@ public class TutorialManager : MonoBehaviour {
                     controller.GetComponent<SteamVR_LaserPointer>().FakeStart();
                     replayButton.SetActive(true);
                     continueButton.SetActive(true);
+                    background.SetActive(true);
                     laser = true;
                     InvokeMethod("ChangeText", 0, "Kijk naar de knoppen aan de andere kant van de kamer \nEn maak een keuze door te richten met je \ncontroller en op de trigger te drukken.");
                 }

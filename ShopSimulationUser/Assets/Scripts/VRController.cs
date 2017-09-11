@@ -9,6 +9,8 @@ using UnityEngine.SceneManagement;
 [RequireComponent(typeof(SteamVR_TrackedObject))]
 public class VRController : MonoBehaviour
 {
+    private SoundsPlayer audio;
+
     SpawnController spawnController;
 
     List<GameObject> inRange = new List<GameObject>();
@@ -41,6 +43,7 @@ public class VRController : MonoBehaviour
 
     void Awake()
     {
+        audio = GameObject.Find("SoundsPlayer").GetComponent<SoundsPlayer>();
         anim = GetComponentInChildren<Animator>();
         trackedObj = GetComponent<SteamVR_TrackedObject>();
         empty = Shader.Find("Standard");
@@ -117,6 +120,7 @@ public class VRController : MonoBehaviour
             !raycastHit.collider.GetComponent<GroceryDataHandler>().inCart) //raycast hit + een ray kleiner dan #  
 
         {
+            audio.PopSound();
             gameObject = raycastHit.collider.gameObject; //het object dat de ray raakt wordt gezet in gameObject
             
             goParent = gameObject.transform.parent;
@@ -158,6 +162,7 @@ public class VRController : MonoBehaviour
     {
         if (joint != null)
         {
+            audio.PopSound();
             GameObject go = joint.gameObject;
             var device = SteamVR_Controller.Input((int)trackedObj.index);
             var rigidbody = joint.gameObject.GetComponent<Rigidbody>();
@@ -181,7 +186,11 @@ public class VRController : MonoBehaviour
             }
         }
 
-        if(cart != null) cart = null;        
+        if (cart != null)
+        {
+            audio.Stop();
+            cart = null;
+        }
     }
 
     void HandleChild(GameObject grocery)
@@ -297,6 +306,7 @@ public class VRController : MonoBehaviour
         {
             var device = SteamVR_Controller.Input((int)trackedObj.index);
             if (device.GetTouchDown(SteamVR_Controller.ButtonMask.Trigger)) {
+                audio.CartwheelsSound();
                 cart = collision.gameObject;
             }
         }

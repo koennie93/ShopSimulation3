@@ -9,12 +9,17 @@ public class ShelfEditorHandler : MonoBehaviour {
     List<Dropdown> dropdowns = new List<Dropdown>();
     List<InputField> inputFields = new List<InputField>();
     List<string> groceryChoices;
+
     [HideInInspector]
     public List<string> shelfselection;
     [HideInInspector]
     public List<string> priceselection;
 
+    [SerializeField]
+    private Dropdown loadSelector;
+
     public void Awake () {
+        loadSelector.captionText.text = "Load";
         List<GameObject> dropdownObjects = new List<GameObject>();
         List<GameObject> inputFieldObjects = new List<GameObject>();
 
@@ -64,6 +69,27 @@ public class ShelfEditorHandler : MonoBehaviour {
             dropdowns[i].value = 0;
             dropdowns[i].transform.Find("Label").GetComponent<Text>().text = "Empty";
         }
+
+#if UNITY_EDITOR
+        string loadPath = Directory.GetParent(Directory.GetParent(Application.dataPath).FullName).FullName + "\\Shared Data\\Data\\ShelfData";
+#else
+        string loadPath = Directory.GetParent(Application.dataPath).FullName + "\\Shared Data\\Data\\ShelfData";
+#endif
+        string[] loadInfo = Directory.GetFiles(loadPath);
+        List<string> loadChoices = new List<string>();
+        for (int i = 0; i < loadInfo.Length; i++)
+        {
+            if (!loadChoices.Contains(loadInfo[i].Split('\\')[loadInfo[i].Split('\\').Length - 1].Split('.')[0]))
+                loadChoices.Add(loadInfo[i].Split('\\')[loadInfo[i].Split('\\').Length - 1].Split('.')[0]);
+        }
+        loadSelector.options.Clear();
+        for (int j = 0; j < loadChoices.Count; j++)
+        {
+            if(loadChoices[j].Contains("Items"))
+            loadSelector.options.Add(new Dropdown.OptionData() { text = loadChoices[j].Split("shelfItems".ToCharArray())[0] });
+        }
+
+        LoadSavedSelection(true);
     }
 
     public void UpdateShelfSelection ()
@@ -88,6 +114,42 @@ public class ShelfEditorHandler : MonoBehaviour {
         File.WriteAllLines(Directory.GetParent(Application.dataPath).FullName + "\\Shared Data" + "\\shelfselection.txt", shelfselection.ToArray());
         File.WriteAllLines(Directory.GetParent(Application.dataPath).FullName + "\\Shared Data" + "\\priceselection.txt", priceselection.ToArray());
 #endif
+    }
+
+    public void LoadSavedSelection (bool awake)
+    {
+        string[] shelf;
+        string[] prices;
+
+        if (awake)
+        {
+#if UNITY_EDITOR
+            shelf = File.ReadAllLines(Directory.GetParent(Directory.GetParent(Application.dataPath).FullName).FullName + "\\Shared Data\\shelfselection.txt");
+            prices = File.ReadAllLines(Directory.GetParent(Directory.GetParent(Application.dataPath).FullName).FullName + "\\Shared Data\\priceselection.txt");
+#else
+        shelf = File.ReadAllLines(Directory.GetParent(Application.dataPath).FullName + "\\Shared Data\\shelfselection.txt");
+        prices = File.ReadAllLines(Directory.GetParent(Application.dataPath).FullName + "\\Shared Data\\priceselection.txt");
+#endif
+        }
+        else
+        {
+#if UNITY_EDITOR
+            shelf = File.ReadAllLines(Directory.GetParent(Directory.GetParent(Application.dataPath).FullName).FullName + "\\Shared Data\\Data\\ShelfData\\" + loadSelector.options[loadSelector.value].text + "shelfItems.txt");
+            prices = File.ReadAllLines(Directory.GetParent(Directory.GetParent(Application.dataPath).FullName).FullName + "\\Shared Data\\Data\\ShelfData\\" + loadSelector.options[loadSelector.value].text + "shelfprices.txt");
+#else
+        shelf = File.ReadAllLines(Directory.GetParent(Application.dataPath).FullName + "\\Shared Data\\Data\\ShelfData\\" + loadSelector.options[loadSelector.value].text + "shelfItems.txt");
+        prices = File.ReadAllLines(Directory.GetParent(Application.dataPath).FullName + "\\Shared Data\\Data\\ShelfData\\" + loadSelector.options[loadSelector.value].text + "shelfprices.txt");
+#endif
+        }
+
+        for (int i = 0; i < dropdowns.Count; i++)
+        {
+            dropdowns[i].value = groceryChoices.IndexOf(shelf[i]);
+        }
+        for (int i = 0; i < dropdowns.Count; i++)
+        {
+            inputFields[i].text = prices[i];
+        }
     }
 
     public void EmptyAll()

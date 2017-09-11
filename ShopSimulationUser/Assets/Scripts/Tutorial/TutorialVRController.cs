@@ -12,6 +12,8 @@ public class TutorialVRController : MonoBehaviour
     public GameObject tutorialManagerGameObject;
     TutorialManager tutorialManager;
 
+    private SoundsPlayer audio;
+
     SpawnController spawnController;
 
     List<GameObject> inRange = new List<GameObject>();
@@ -49,6 +51,7 @@ public class TutorialVRController : MonoBehaviour
 
     void Awake()
     {
+        audio = GameObject.Find("SoundsPlayer").GetComponent<SoundsPlayer>();
         anim = GetComponentInChildren<Animator>();
         tutorialManager = tutorialManagerGameObject.GetComponent<TutorialManager>();
         trackedObj = GetComponent<SteamVR_TrackedObject>();
@@ -82,7 +85,10 @@ public class TutorialVRController : MonoBehaviour
         {
             RaycastHit hit;
             if (Physics.Raycast(transform.position, transform.forward, out hit))
-                if (hit.collider.name == "Continue") LoadScene("VRScene");       
+                if (hit.collider.name == "Continue")
+                {
+                    LoadScene("VRScene");
+                }
         }
     }
 
@@ -135,8 +141,9 @@ public class TutorialVRController : MonoBehaviour
             !raycastHit.collider.GetComponent<GroceryDataHandler>().inCart) //raycast hit + een ray kleiner dan #  
 
         {
-            if (tutorialManager.tutorialState == 5) tutorialManager.InvokeMethod("ChangeState", 10, 6);            
+            if (tutorialManager.tutorialState == 5) tutorialManager.InvokeMethod("ChangeState", 10, 6);
 
+            audio.PopSound();
             gameObject = raycastHit.collider.gameObject; //het object dat de ray raakt wordt gezet in gameObject
             goParent = gameObject.transform.parent;
             gameObject.transform.parent = null;
@@ -169,6 +176,7 @@ public class TutorialVRController : MonoBehaviour
     {
         if (joint != null)
         {
+            audio.PopSound();
             GameObject go = joint.gameObject;
             var device = SteamVR_Controller.Input((int)trackedObj.index);
             var rigidbody = joint.gameObject.GetComponent<Rigidbody>();
@@ -193,7 +201,8 @@ public class TutorialVRController : MonoBehaviour
         if (cart != null)
         {
             if(tutorialManager.tutorialState == 8) tutorialManager.InvokeMethod("ChangeState", 5, 9);
-            
+
+            audio.Stop();
             cart = null;
         }
     }
@@ -312,6 +321,7 @@ public class TutorialVRController : MonoBehaviour
             var device = SteamVR_Controller.Input((int)trackedObj.index);
             if (device.GetTouchDown(SteamVR_Controller.ButtonMask.Trigger))
             {
+                audio.CartwheelsSound();
                 cart = collision.gameObject;
             }
         }

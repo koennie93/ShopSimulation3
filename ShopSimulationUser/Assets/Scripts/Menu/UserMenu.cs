@@ -4,6 +4,9 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class UserMenu : MonoBehaviour {
+
+    private SoundsPlayer audio;
+
     [SerializeField]
     GameObject VRRoom;
     [SerializeField]
@@ -22,6 +25,7 @@ public class UserMenu : MonoBehaviour {
 
     private void Start()
     {
+        audio = GameObject.Find("SoundsPlayer").GetComponent<SoundsPlayer>();
         trackedObj = GetComponent<SteamVR_TrackedObject>();
         laser = GetComponent<SteamVR_LaserPointer>();
         sRendererVR = VRRoom.GetComponent<SpriteRenderer>();
@@ -37,12 +41,20 @@ public class UserMenu : MonoBehaviour {
             if (hit.collider.gameObject == Tutorial)
             {
                 sRendererTut.sprite = spriteDark;
-                if (device.GetTouchDown(SteamVR_Controller.ButtonMask.Trigger)) SceneManager.LoadScene("TutorialScene");
+                if (device.GetTouchDown(SteamVR_Controller.ButtonMask.Trigger))
+                {
+                    audio.DingSound();
+                    SceneManager.LoadScene("TutorialScene");
+                }
             }
             else if (hit.collider.gameObject == VRRoom)
             {
                 sRendererVR.sprite = spriteDark;
-                if (device.GetTouchDown(SteamVR_Controller.ButtonMask.Trigger)) SceneManager.LoadScene("VRScene");
+                if (device.GetTouchDown(SteamVR_Controller.ButtonMask.Trigger))
+                {
+                    audio.DingSound();
+                    SceneManager.LoadScene("VRScene");
+                }
             }
             else
             {
