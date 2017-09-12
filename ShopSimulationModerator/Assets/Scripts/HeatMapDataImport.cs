@@ -114,11 +114,10 @@ public class HeatMapDataImport : MonoBehaviour {
 
     public Vector4[] TextToVector4(string path)
     {
-        // This method takes a path to the saved heatmap data and converts it to a Vector4 array which it returns together with an array of properties. TextToVector4[0] = Positions, TextToVector4[1] = Properties.
+        // This method takes a path to the saved heatmap data and converts it to a Vector4 array which it returns.
         string[] heatmapPositionLines;
         List<string[]> heatmapPositionArrayLines = new List<string[]>();
         List<Vector4> heatmapPositionsVector4 = new List<Vector4>();
-        List<Vector4> heatmapPropertiesVector4 = new List<Vector4>();
 
         // Read the text file as an array where every line is a string.
         heatmapPositionLines = File.ReadAllLines(path);
@@ -134,7 +133,6 @@ public class HeatMapDataImport : MonoBehaviour {
             // Every string array in the list is converted to a Vector4 and added to a list.
             heatmapPositionsVector4.Add(new Vector4(float.Parse(heatmapPositionArrayLines[i][0]), float.Parse(heatmapPositionArrayLines[i][1]), float.Parse(heatmapPositionArrayLines[i][2]), float.Parse(heatmapPositionArrayLines[i][3])));
         }
-
         
         // Vector4 list is returned
         return heatmapPositionsVector4.ToArray();

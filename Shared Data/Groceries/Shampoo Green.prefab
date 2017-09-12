@@ -27,7 +27,7 @@ GameObject:
   - component: {fileID: 64564089972959092}
   - component: {fileID: 114732342278183618}
   m_Layer: 8
-  m_Name: Shampoo 2
+  m_Name: Shampoo Green
   m_TagString: Grocery
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -59,7 +59,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 7a353a3c2c8b498428e75d4c2c609c19, type: 2}
+  - {fileID: 2100000, guid: eeb42600348b8d042bd2dc53c63b239d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

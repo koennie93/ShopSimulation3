@@ -18,8 +18,6 @@ public class ViveHeatMapHeadSetController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        Debug.DrawRay(transform.position, transform.forward);
-
         if (period > 0.1f)
         {
             if (Physics.Raycast(transform.position, transform.forward, out heatMapRayCast) && heatMapRayCast.transform.gameObject.tag == "HeatMapPlane")

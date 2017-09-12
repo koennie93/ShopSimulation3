@@ -3,7 +3,7 @@
 
 // Alan Zucconi
 // www.alanzucconi.com
-Shader "Hidden/Heatmap" {
+Shader "Custom/Heatmap" {
 		Properties{
 			_HeatTex("Texture", 2D) = "white" {}
 		}

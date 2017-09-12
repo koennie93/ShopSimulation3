@@ -6,6 +6,8 @@ using UnityEngine.UI;
 
 public class ShelfEditorHandler : MonoBehaviour {
 
+    List<Dropdown> dropdownHorizontals = new List<Dropdown>();
+    List<InputField> inputFieldHorizontals = new List<InputField>();
     List<Dropdown> dropdowns = new List<Dropdown>();
     List<InputField> inputFields = new List<InputField>();
     List<string> groceryChoices;
@@ -20,8 +22,20 @@ public class ShelfEditorHandler : MonoBehaviour {
 
     public void Awake () {
         loadSelector.captionText.text = "Load";
+        List<GameObject> dropdownHorizontalObjects = new List<GameObject>();
+        List<GameObject> inputFieldHorizontalObjects = new List<GameObject>();
         List<GameObject> dropdownObjects = new List<GameObject>();
         List<GameObject> inputFieldObjects = new List<GameObject>();
+
+        foreach (Transform child in GameObject.Find("ShelfHorizontals").transform)
+        {
+            dropdownHorizontalObjects.Add(child.gameObject);
+        }
+
+        foreach (Transform child in GameObject.Find("PriceHorizontals").transform)
+        {
+            inputFieldHorizontalObjects.Add(child.gameObject);
+        }
 
         foreach (Transform child in GameObject.Find("ShelfChoices").transform)
         {
@@ -31,6 +45,18 @@ public class ShelfEditorHandler : MonoBehaviour {
         foreach (Transform child in GameObject.Find("PriceInputFields").transform)
         {
             inputFieldObjects.Add(child.gameObject);
+        }
+
+        for (int i = 0; i < dropdownHorizontalObjects.Count; i++)
+        {
+            // Add all horizontal dropdowns in scene to a list for later use.
+            dropdownHorizontals.Add(dropdownHorizontalObjects[i].GetComponent<Dropdown>());
+        }
+
+        for (int i = 0; i < dropdownHorizontalObjects.Count; i++)
+        {
+            // Add all horizontal input fields in scene to a list for later use.
+            inputFieldHorizontals.Add(inputFieldHorizontalObjects[i].GetComponent<InputField>());
         }
 
         for (int i = 0; i < dropdownObjects.Count; i++)
@@ -65,9 +91,20 @@ public class ShelfEditorHandler : MonoBehaviour {
             for (int j = 0; j < groceryChoices.Count; j++)
             {
                 dropdowns[i].options.Add(new Dropdown.OptionData() { text = groceryChoices[j] });
+                
             }
             dropdowns[i].value = 0;
             dropdowns[i].transform.Find("Label").GetComponent<Text>().text = "Empty";
+        }
+        for (int i = 0; i < dropdownHorizontals.Count; i++)
+        {
+            dropdownHorizontals[i].options.Clear(); 
+            for (int j = 0; j < groceryChoices.Count; j++)
+            {
+                dropdownHorizontals[i].options.Add(new Dropdown.OptionData() { text = groceryChoices[j] });
+            }
+            dropdownHorizontals[i].value = 0;
+            dropdownHorizontals[i].transform.Find("Label").GetComponent<Text>().text = "Empty";
         }
 
 #if UNITY_EDITOR
@@ -152,7 +189,30 @@ public class ShelfEditorHandler : MonoBehaviour {
         }
     }
 
-    public void EmptyAll()
+    public void HorizontalReplace (int row)
+    {
+        Dropdown horizontalDropdown = dropdownHorizontals[row - 1];
+        InputField horizontalInputField = inputFieldHorizontals[row - 1];
+
+        foreach (Dropdown dropdown in dropdowns)
+        {
+            if(dropdown.name.Split(',')[1] == row.ToString())
+            {
+                dropdown.value = horizontalDropdown.value;
+                dropdown.transform.Find("Label").GetComponent<Text>().text = horizontalDropdown.transform.Find("Label").GetComponent<Text>().text;
+            }
+        }
+
+        foreach (InputField inputField in inputFields)
+        {
+            if(inputField.name.Split(',')[1] == row.ToString())
+            {
+                inputField.text = horizontalInputField.text;
+            }
+        }
+    }
+
+    public void EmptyAll ()
     {
         // Empty all selections
         for (int i = 0; i < dropdowns.Count; i++)

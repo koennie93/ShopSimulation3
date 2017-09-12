@@ -6,10 +6,10 @@ Can Cola
 Can Energy
 Can Energy
 Can Fanta
-Bio melk
-Halfvol
-Volle melk
-Karne melk
+Melk Bio
+Melk Halfvol
+Melk Vol
+Melk Karne
 Shampoo Black
 Shampoo Green
 Shampoo Red
